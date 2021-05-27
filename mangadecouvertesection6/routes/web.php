@@ -18,3 +18,4 @@ Route::get('/', function () {
     return view('welcome');
 });
 Route::resource('mangas',MangaController::class);
+Route::resource('collections',CollectionController::class);
