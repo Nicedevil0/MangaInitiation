@@ -16,12 +16,15 @@
         </div>
     </div>
 @endif
-    <table class="table table-bordered table-striped">
+    <table class="table table-bordered table-striped table-hover">
         <thead>
             <tr>
                 <th>#</th>
                 <th>Titre</th>
                 <th>Genre</th>
+                <th></th>
+                <th></th>
+                <th><a class="btn btn-success" href="{{ route('mangas.create') }}">Nouveau manga</a></th>
             </tr>
         </thead>
         @foreach($mangas as $manga)
@@ -30,6 +33,7 @@
                 <td> {{ $manga->titre }} </td>
                 <td> {{ $manga->genre }} </td>
                 <td><a class="btn btn-primary" href="{{ route('mangas.show',$manga->id) }}">Voir</a></td>
+                <td><a class="btn btn-warning" href="{{ route('mangas.edit',$manga->id) }}">Modifier</a></td>
                 <td>
                     <form action="{{ route('mangas.destroy',$manga->id) }}" method="post">
                         @csrf

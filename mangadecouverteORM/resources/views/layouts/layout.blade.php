@@ -33,6 +33,24 @@
                     <li><a class="dropdown-item" href="{{url('scenaristes')}}">Les scénaristes</a></li>
                 </ul>
                 </li>
+                <li class="nav-item dropdown">
+                    @auth
+
+                    <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                        Bienvenue, {{ Auth::user()->name }}
+                    </a>
+                    <ul class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
+                        <li>
+                            <a class="dropdown-item" href="{{route('logout')}}" onclick="event.preventDefault();document.getElementById('logout-form').summit();">{{ __('Logout') }}</a>
+                            <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
+                                @csrf
+                            </form>
+                        </li>
+                    </ul>
+                    @else
+                    <a class="nav-link active" aria-current="page" href="{{ route('login') }}">Login</a>
+                    @endauth
+                </li>
             </ul>
             </div>
         </div>

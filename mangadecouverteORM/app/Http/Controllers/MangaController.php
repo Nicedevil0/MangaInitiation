@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Manga;
 use Illuminate\Http\Request;
+use App\Http\Requests\InsertMangaRequest;
 
 class MangaController extends Controller
 {
@@ -25,18 +26,19 @@ class MangaController extends Controller
      */
     public function create()
     {
-        //
+        return view('create');
     }
 
     /**
      * Store a newly created resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
+     * @param  App\Http\Requests\InsertMangaRequest  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(InsertMangaRequest $request)
     {
-        //
+        Manga::create($request->all());
+        return view('confirm');
     }
 
     /**
@@ -58,7 +60,7 @@ class MangaController extends Controller
      */
     public function edit(Manga $manga)
     {
-        //
+        return view('edit',compact('manga'));
     }
 
     /**
@@ -70,7 +72,8 @@ class MangaController extends Controller
      */
     public function update(Request $request, Manga $manga)
     {
-        //
+        $manga->update($request->all());
+        return back()->with('info','Le manga a bien été modifié');
     }
 
     /**
